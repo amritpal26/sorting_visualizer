@@ -8,14 +8,14 @@
                     @click="generateNewArray">Generate New Array</v-btn>
                 <v-slider class="controls-item grow" 
                     label="Array Size" 
-                    :hide-details="true" 
-                    :v-model="arraySize" 
                     thumb-label="always" 
-                    :min="minArraySize" 
-                    @change="generateNewArray" 
-                    :max="maxArraySize" />
+                    v-model="arraySize" 
+                    :hide-details="true" 
+                    :min="minArraySize"
+                    :max="maxArraySize" 
+                    @change="generateNewArray"
+                    />
                 <v-select class="controls-item grow last-item" 
-                    return-object
                     label="Sorting Algorithm" 
                     :hide-details="true" 
                     v-model="sortingAlgorithm" 
@@ -24,7 +24,7 @@
             </div>
             <v-btn class="sort-button" 
                 dark color="primary" 
-                :disabled="canSort" 
+                :disabled="!canSort" 
                 @click="sort">Sort!</v-btn>
         </v-card>
     </v-container>
@@ -33,8 +33,8 @@
 <script>
 const MinArraySize = 20;
 const MaxArraySize = 100;
-const MinArrayElement = 20;
-const MaxArrayElement = 100;
+
+import { AlgorithmTypes } from '../algorithms/index';
 
 export default {
     name: 'Controls',
@@ -48,10 +48,10 @@ export default {
         minArraySize: MinArraySize,
         maxArraySize: MaxArraySize,
         sortingAlgorithms: [
-            {name: 'Merge Sort'},
-            {name: 'Quick Sort'},
-            {name: 'Heap Sort'},
-            {name: 'Bubble Sort'},
+            { name: 'Merge Sort', value: AlgorithmTypes.MERGE_SORT },
+            { name: 'Quick Sort', value: AlgorithmTypes.QUICK_SORT },
+            { name: 'Heap Sort', value: AlgorithmTypes.HEAP_SORT },
+            { name: 'Bubble Sort', value: AlgorithmTypes.BUBBLE_SORT },
         ]
     }),
     mounted() {
@@ -59,15 +59,15 @@ export default {
     },
     computed: {
         canSort : function() {
-            return !this.isSorting && this.sortingAlgorithm && this.array && this.array.length === this.arraySize;
+            return !this.isSorting && this.sortingAlgorithm;
         }
     },
     methods: {
-        generateNewArray : function () {
-            var range = MaxArrayElement - MinArrayElement +1;
-            this.array = Array(this.arraySize).fill().map(() => MinArrayElement + Math.round(Math.random() * range));
+        generateNewArray: function () {
+            this.$emit('newArray', this.arraySize);
         },
-        sort : function () {
+        sort: function () {
+            console.log(this.sortingAlgorithm);
             this.$emit('sort');
         }
     }
