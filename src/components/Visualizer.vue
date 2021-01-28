@@ -3,10 +3,11 @@
         <div class="visualizer-container">
             <div id="array-container">
                 <div class="array-bar" 
-                    v-for="(barHeight, index) in barsArray"  
+                    v-for="(bar, index) in barsArray"  
                     :key="index"
-                    :style="{height: `${4*barHeight}px`, width: `${barWidth}%`, margin: `${barMarginPercent}%`}"/>
+                    :style="bar.style"/>
             </div>
+            <div class="bar-bottom-line"></div>
         </div>
     </v-container>
 </template>
@@ -15,28 +16,48 @@
 export default {
     name: 'Visualizer',
     props: {
-        barsArray: {
+        numbersArray: {
             type: Array,
-            default: () => {return [36, 66, 72, 100, 94, 39, 48, 71, 40, 38, 51, 52, 44, 60, 67, 86, 44, 53, 22, 94] }
+            default: () => {return [] }
         }
     },
     data: () => ({
-        barWidth: 2,
-        barMarginPercent: 0.2
+        barsArray: []
     }),
     mounted() {
-        this.calculateBarWidth();
+        this.calculateBarsArray();
     },
     watch: {
-        barsArray: function() {
-            this.calculateBarWidth();
+        numbersArray: function() {
+            this.calculateBarsArray();
         }
     },
     methods: {
-        calculateBarWidth: function () {
-            if (!this.barsArray) return;
-            this.barWidth = (100/this.barsArray.length)- (this.barMarginPercent * 2);
-        }
+        calculateBarsArray() {
+            var barMarginPercent = 0.2;
+            var barWidth = this.calculateBarWidth(this.numbersArray.length, barMarginPercent);
+            
+            var bars = [];
+            this.numbersArray.forEach(barHeight => {
+                bars.push({
+                    height: barHeight,
+                    style: {
+                        height: `${4*barHeight}px`,
+                        width: `${barWidth}%`,
+                        margin: `0px ${barMarginPercent}%`,
+                        backgroundColor: '#9803fc'
+                    }
+                })
+            });
+            this.barsArray = bars;
+        },
+        calculateBarWidth: function (length, margin) {
+            if (!this.barsArray) {
+                return 0;
+            }
+
+            return (100/length) - (margin * 2);
+        },
     }
 }
 </script>
@@ -50,11 +71,15 @@ export default {
 }
 #array-container {
     width: 90%;
-    margin: 40px auto;
+    margin: 0px auto;
 }
 #array-container .array-bar {
     display: inline-block;
-    margin: 0 2px;
-    background-color: brown;
+}
+.visualizer-container .bar-bottom-line {
+    height: 2px;
+    width: 90%;
+    margin: 0px auto;
+    background-color: blue;
 }
 </style>

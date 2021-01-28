@@ -1,7 +1,7 @@
 <template>
     <v-container id="sorter-container">
         <visualizer id="visualizer"
-            :barsArray="array"/>
+            :numbersArray="array"/>
         <controls id="controls"
             @sort="startSort"
             @newArray="generateNewArray" />
@@ -29,8 +29,7 @@ export default {
             console.log("startSort");
         },
         generateNewArray : function (arraySize) {
-            console.log('generateNewArray', arraySize);
-            var range = MaxArrayElement - MinArrayElement +1;
+            var range = MaxArrayElement - MinArrayElement + 1;
             this.array = Array(arraySize).fill().map(() => MinArrayElement + Math.round(Math.random() * range));
         },
     }
