@@ -1,36 +1,16 @@
 <template>
     <v-app>
         <v-app-bar app dark color="primary">
-            <div class="d-flex align-center">
-                <v-img
+            <v-img
                 alt="Vuetify Logo"
                 class="shrink mr-2"
                 contain
-                src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                src="./assets/sort.png"
                 transition="scale-transition"
-                width="40"
-                />
-
-                <v-img
-                alt="Vuetify Name"
-                class="shrink mt-1 hidden-sm-and-down"
-                contain
-                min-width="100"
-                src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-                width="100"
-                />
-            </div>
-
+                width="60" />
+            <div class="app-bar-title app-bar-text">Sorting Visualizer</div>
             <v-spacer></v-spacer>
-
-            <v-btn
-                href="https://github.com/vuetifyjs/vuetify/releases/latest"
-                target="_blank"
-                text
-            >
-                <span class="mr-2">Latest Release</span>
-                <v-icon>mdi-open-in-new</v-icon>
-            </v-btn>
+            <span class="mr-2 app-bar-text">by Amritpal Singh</span>
         </v-app-bar>
         <v-main>
             <sorter/>
@@ -40,7 +20,6 @@
 
 <script>
 import Sorter from './components/Sorter';
-
 export default {
   name: 'App',
   components: {
@@ -48,3 +27,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.app-bar-title {
+    font: bold;
+    font-size: 2.0em;
+}
+.app-bar-text {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+</style>
