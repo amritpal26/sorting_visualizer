@@ -1,9 +1,12 @@
 <template>
     <v-container>
-        <v-card class="controls-container">
+        <v-card class="controls-container"
+            elevation="6">
             <div class="controls">
                 <v-btn class="controls-item" 
                     dark
+                    outlined
+                    elevation="2"
                     color="primary"
                     :disabled="isSorting"
                     @click="generateNewArray">Generate New Array</v-btn>
@@ -26,7 +29,8 @@
                     :items="sortingAlgorithms" />
             </div>
             <v-btn class="sort-button" 
-                dark 
+                dark
+                elevation="2"
                 color="primary"
                 :disabled="!canSort" 
                 @click="sort">Sort!</v-btn>
@@ -38,7 +42,7 @@
 const MinArraySize = 20;
 const MaxArraySize = 100;
 
-import { AlgorithmTypes } from '../algorithms/index';
+import { AlgorithmTypes } from '../sorting/index';
 
 export default {
     name: 'Controls',
@@ -47,7 +51,7 @@ export default {
     },
     data: () => ({
         arraySize: MinArraySize,
-        sortingAlgorithm: null,
+        sortingAlgorithm: AlgorithmTypes.MERGE_SORT,
         array: null,
         minArraySize: MinArraySize,
         maxArraySize: MaxArraySize,

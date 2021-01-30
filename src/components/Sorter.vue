@@ -17,7 +17,7 @@ const MaxArrayElement = 100;
 
 import Visualizer from './Visualizer';
 import Controls from './Controls';
-import { AlgorithmTypes, SortingAlgorithms } from '../algorithms/index';
+import { AlgorithmTypes, SortingAlgorithms } from '../sorting/index';
 
 export default {
     name: 'Sorter',

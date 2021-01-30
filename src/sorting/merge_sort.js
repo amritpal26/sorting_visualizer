@@ -1,6 +1,4 @@
-const YELLOW = "#FFFF00";
-const RED = "#FF0000";
-const GREEN = "#00FF00";
+import { Colors } from './colors';
 
 function merge(numbers, start, mid, end, onStep) {
     var p = start, q = mid+1;
@@ -9,16 +7,16 @@ function merge(numbers, start, mid, end, onStep) {
     for(var i=start; i<=end; i++) {
         if(p > mid) {
             array.push(numbers[q++]);
-            onStep(q-1, numbers[q-1], RED);
+            onStep(q-1, numbers[q-1], Colors.BAR_MERGE_JOIN);
         } else if(q > end) {
             array.push(numbers[p++]);
-            onStep(p-1, numbers[p-1], RED);
+            onStep(p-1, numbers[p-1], Colors.BAR_MERGE_JOIN);
         } else if(numbers[p] < numbers[q]) {
             array.push(numbers[p++]);
-            onStep(p-1, numbers[p-1], RED);
+            onStep(p-1, numbers[p-1], Colors.BAR_MERGE_JOIN);
         } else {
             array.push(numbers[q++]);
-            onStep(q-1, numbers[q-1], RED);
+            onStep(q-1, numbers[q-1], Colors.BAR_MERGE_JOIN);
         }
     }
 
@@ -26,7 +24,7 @@ function merge(numbers, start, mid, end, onStep) {
     for(var t=0; t < array.length; t++) {
         numbers[i++] = array[t];
         var isSortingFinished = start == 0 && end == numbers.length-1 && i == end;
-        onStep(i-1, numbers[i-1], GREEN, isSortingFinished);
+        onStep(i-1, numbers[i-1], Colors.BAR_SORTED, isSortingFinished);
     }
 }
 
@@ -36,7 +34,7 @@ function merge_sort(numbers, start, end, onStep) {
     }
 
     var mid = Math.floor((start+end) / 2);
-    onStep(mid, numbers[mid], YELLOW);
+    onStep(mid, numbers[mid], Colors.BAR_MERGE_DIVIDE);
     merge_sort(numbers, start, mid, onStep);
     merge_sort(numbers, mid+1, end, onStep);
     merge(numbers, start, mid, end, onStep);

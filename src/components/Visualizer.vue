@@ -7,13 +7,15 @@
                     :key="index"
                     :style="bar"/>
             </div>
-            <div class="bar-bottom-line"></div>
+            <div class="bar-bottom-line"
+                :style="{backgroundColor: bottomBarColor}"></div>
         </div>
     </v-container>
 </template>
 
 <script>
 import Vue from 'vue';
+import { Colors } from '../sorting/index';
 
 export default {
     name: 'Visualizer',
@@ -25,7 +27,8 @@ export default {
     },
     data: () => ({
         barsArray: [],
-        baseDelay: 0
+        baseDelay: 0,
+        bottomBarColor: Colors.BAR_BASE
     }),
     mounted() {
         this.calculateBarsArray();
@@ -47,7 +50,7 @@ export default {
                     height: `${4*barHeight}px`,
                     width: `${barWidth}%`,
                     margin: `0px ${barMarginPercent}%`,
-                    backgroundColor: '#9803fc'
+                    backgroundColor: Colors.BAR_NORMAL
                 })
             });
             this.barsArray = bars;
@@ -92,9 +95,8 @@ export default {
     display: inline-block;
 }
 .visualizer-container .bar-bottom-line {
-    height: 2px;
+    height: 4px;
     width: 90%;
     margin: 0px auto;
-    background-color: blue;
 }
 </style>
