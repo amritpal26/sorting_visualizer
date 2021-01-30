@@ -5,7 +5,7 @@
                 <div class="array-bar" 
                     v-for="(bar, index) in barsArray"  
                     :key="index"
-                    :style="bar.style"/>
+                    :style="bar"/>
             </div>
             <div class="bar-bottom-line"></div>
         </div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
     name: 'Visualizer',
     props: {
@@ -22,7 +24,8 @@ export default {
         }
     },
     data: () => ({
-        barsArray: []
+        barsArray: [],
+        baseDelay: 0
     }),
     mounted() {
         this.calculateBarsArray();
@@ -40,13 +43,10 @@ export default {
             var bars = [];
             this.numbersArray.forEach(barHeight => {
                 bars.push({
-                    height: barHeight,
-                    style: {
-                        height: `${4*barHeight}px`,
-                        width: `${barWidth}%`,
-                        margin: `0px ${barMarginPercent}%`,
-                        backgroundColor: '#9803fc'
-                    }
+                    height: `${4*barHeight}px`,
+                    width: `${barWidth}%`,
+                    margin: `0px ${barMarginPercent}%`,
+                    backgroundColor: '#9803fc'
                 })
             });
             this.barsArray = bars;
@@ -55,9 +55,20 @@ export default {
             if (!this.barsArray) {
                 return 0;
             }
-
             return (100/length) - (margin * 2);
         },
+        updateBarStyle: function(index, height, color) {
+            var me = this;
+            setTimeout(() => {
+                var bar = {
+                    ...me.barsArray[index],
+                    height: `${4*height}px`,
+                    backgroundColor: color
+                };
+                Vue.set(me.barsArray, index, bar);
+            }, me.baseDelay * 100);
+            me.baseDelay++;
+        }
     }
 }
 </script>

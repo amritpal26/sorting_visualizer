@@ -67,8 +67,7 @@ export default {
             this.$emit('newArray', this.arraySize);
         },
         sort: function () {
-            console.log(this.sortingAlgorithm);
-            this.$emit('sort');
+            this.$emit('sort', this.sortingAlgorithm);
         }
     }
 }

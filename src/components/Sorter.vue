@@ -1,6 +1,7 @@
 <template>
     <v-container id="sorter-container">
         <visualizer id="visualizer"
+            ref="visualizer"
             :numbersArray="array"/>
         <controls id="controls"
             @sort="startSort"
@@ -14,6 +15,7 @@ const MaxArrayElement = 100;
 
 import Visualizer from './Visualizer';
 import Controls from './Controls';
+import { AlgorithmTypes, SortingAlgorithms } from '../algorithms/index';
 
 export default {
     name: 'Sorter',
@@ -25,8 +27,15 @@ export default {
         array: []
     }),
     methods: {
-        startSort: function() {
-            console.log("startSort");
+        startSort: function(sortType) {
+            switch (sortType) {
+                case AlgorithmTypes.MERGE_SORT:
+                    // this.$refs.visualizer.updateBarStyle(10, 50, '#ffff00');
+                    SortingAlgorithms.MergeSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
+                default:
+                    break;
+            }
         },
         generateNewArray : function (arraySize) {
             var range = MaxArrayElement - MinArrayElement + 1;
