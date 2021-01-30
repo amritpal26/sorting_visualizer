@@ -58,7 +58,7 @@ export default {
             }
             return (100/length) - (margin * 2);
         },
-        updateBarStyle: function(index, height, color) {
+        updateBarStyle: function(index, height, color, isSortingFinished) {
             var me = this;
             setTimeout(() => {
                 var bar = {
@@ -67,6 +67,9 @@ export default {
                     backgroundColor: color
                 };
                 Vue.set(me.barsArray, index, bar);
+                if (isSortingFinished) {
+                    this.$emit('animationFinished')
+                }
             }, me.baseDelay * 100);
             me.baseDelay++;
         }

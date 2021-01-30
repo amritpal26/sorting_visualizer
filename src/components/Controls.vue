@@ -4,26 +4,30 @@
             <div class="controls">
                 <v-btn class="controls-item" 
                     dark
-                    color="primary" 
+                    color="primary"
+                    :disabled="isSorting"
                     @click="generateNewArray">Generate New Array</v-btn>
                 <v-slider class="controls-item grow" 
+                    hide-details 
                     label="Array Size" 
-                    thumb-label="always" 
-                    v-model="arraySize" 
-                    :hide-details="true" 
+                    v-model="arraySize"
+                    thumb-label="always"
+                    :disabled="isSorting"
                     :min="minArraySize"
                     :max="maxArraySize" 
                     @change="generateNewArray"
                     />
                 <v-select class="controls-item grow last-item" 
+                    hide-details
                     label="Sorting Algorithm" 
-                    :hide-details="true" 
                     v-model="sortingAlgorithm" 
-                    :items="sortingAlgorithms" 
-                    item-text="name" />
+                    item-text="name"
+                    :disabled="isSorting"
+                    :items="sortingAlgorithms" />
             </div>
             <v-btn class="sort-button" 
-                dark color="primary" 
+                dark 
+                color="primary"
                 :disabled="!canSort" 
                 @click="sort">Sort!</v-btn>
         </v-card>

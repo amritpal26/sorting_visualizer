@@ -2,8 +2,10 @@
     <v-container id="sorter-container">
         <visualizer id="visualizer"
             ref="visualizer"
-            :numbersArray="array"/>
+            :numbersArray="array"
+            @animationFinished="onFinishSorting"/>
         <controls id="controls"
+            :isSorting="isSorting"
             @sort="startSort"
             @newArray="generateNewArray" />
     </v-container>
@@ -24,13 +26,17 @@ export default {
         'controls': Controls 
     },
     data: () => ({
-        array: []
+        array: [],
+        isSorting: false
     }),
     methods: {
+        onFinishSorting: function() {
+            this.isSorting = false;
+        },
         startSort: function(sortType) {
             switch (sortType) {
                 case AlgorithmTypes.MERGE_SORT:
-                    // this.$refs.visualizer.updateBarStyle(10, 50, '#ffff00');
+                    this.isSorting = true;
                     SortingAlgorithms.MergeSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
                 default:

@@ -6,34 +6,27 @@ function merge(numbers, start, mid, end, onStep) {
     var p = start, q = mid+1;
     var array = [];
 
-    for(var j=start; j<=end; j++)
-    {
-        if(p > mid)
-        {
+    for(var i=start; i<=end; i++) {
+        if(p > mid) {
             array.push(numbers[q++]);
             onStep(q-1, numbers[q-1], RED);
-        }
-        else if(q > end)
-        {
+        } else if(q > end) {
             array.push(numbers[p++]);
             onStep(p-1, numbers[p-1], RED);
-        }
-        else if(numbers[p] < numbers[q])
-        {
+        } else if(numbers[p] < numbers[q]) {
             array.push(numbers[p++]);
             onStep(p-1, numbers[p-1], RED);
-        }
-        else
-        {
+        } else {
             array.push(numbers[q++]);
             onStep(q-1, numbers[q-1], RED);
         }
     }
 
-    for(var t=0; t<array.length; t++)
-    {
-        numbers[start++] = array[t];
-        onStep(start-1, numbers[start-1], GREEN);
+    i = start;
+    for(var t=0; t < array.length; t++) {
+        numbers[i++] = array[t];
+        var isSortingFinished = start == 0 && end == numbers.length-1 && i == end;
+        onStep(i-1, numbers[i-1], GREEN, isSortingFinished);
     }
 }
 
