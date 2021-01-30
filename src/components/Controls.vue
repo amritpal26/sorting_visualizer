@@ -4,7 +4,6 @@
             elevation="6">
             <div class="controls">
                 <v-btn class="controls-item" 
-                    dark
                     outlined
                     elevation="2"
                     color="primary"
@@ -38,7 +37,6 @@
                     :items="sortingAlgorithms" />
             </div>
             <v-btn class="sort-button" 
-                dark
                 elevation="2"
                 color="primary"
                 :disabled="!canSort" 
