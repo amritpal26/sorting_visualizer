@@ -15,7 +15,7 @@
 
 <script>
 import Vue from 'vue';
-import { Colors } from '../sorting/index';
+import { Colors, Configs } from '../sorting/index';
 
 export default {
     name: 'Visualizer',
@@ -23,11 +23,15 @@ export default {
         numbersArray: {
             type: Array,
             default: () => {return [] }
+        },
+        animationInterval: {
+            type: Number,
+            default: Configs.DefaultAnimationInterval
         }
     },
     data: () => ({
         barsArray: [],
-        baseDelay: 0,
+        animationCount: 0,
         bottomBarColor: Colors.BAR_BASE
     }),
     mounted() {
@@ -36,7 +40,7 @@ export default {
     watch: {
         numbersArray: function() {
             this.calculateBarsArray();
-            this.baseDelay = 0;
+            this.animationCount = 0;
         }
     },
     methods: {
@@ -73,8 +77,8 @@ export default {
                 if (isSortingFinished) {
                     this.$emit('animationFinished')
                 }
-            }, me.baseDelay * 100);
-            me.baseDelay++;
+            }, me.animationCount * this.animationInterval);
+            me.animationCount++;
         }
     }
 }

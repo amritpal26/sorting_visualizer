@@ -3,11 +3,13 @@
         <visualizer id="visualizer"
             ref="visualizer"
             :numbersArray="array"
-            @animationFinished="onFinishSorting"/>
+            :animationInterval="animationInterval"
+            @animationFinished="onFinishSorting" />
         <controls id="controls"
             :isSorting="isSorting"
             @sort="startSort"
-            @newArray="generateNewArray" />
+            @newArray="generateNewArray"
+            @animationInterval="onAnimationIntervalChange" />
     </v-container>
 </template>
 
@@ -17,7 +19,7 @@ const MaxArrayElement = 100;
 
 import Visualizer from './Visualizer';
 import Controls from './Controls';
-import { AlgorithmTypes, SortingAlgorithms } from '../sorting/index';
+import { AlgorithmTypes, SortingAlgorithms, Configs } from '../sorting/index';
 
 export default {
     name: 'Sorter',
@@ -27,7 +29,8 @@ export default {
     },
     data: () => ({
         array: [],
-        isSorting: false
+        isSorting: false,
+        animationInterval: Configs.DefaultAnimationInterval
     }),
     methods: {
         onFinishSorting: function() {
@@ -47,6 +50,9 @@ export default {
             var range = MaxArrayElement - MinArrayElement + 1;
             this.array = Array(arraySize).fill().map(() => MinArrayElement + Math.round(Math.random() * range));
         },
+        onAnimationIntervalChange: function(animationInterval) {
+            this.animationInterval = animationInterval;
+        }
     }
 }
 </script>

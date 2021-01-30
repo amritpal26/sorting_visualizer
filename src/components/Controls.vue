@@ -12,14 +12,23 @@
                     @click="generateNewArray">Generate New Array</v-btn>
                 <v-slider class="controls-item grow" 
                     hide-details 
+                    thumb-label
                     label="Array Size" 
                     v-model="arraySize"
-                    thumb-label="always"
                     :disabled="isSorting"
-                    :min="minArraySize"
-                    :max="maxArraySize" 
-                    @change="generateNewArray"
-                    />
+                    :min="configs.MinArraySize"
+                    :max="configs.MaxArraySize" 
+                    @change="generateNewArray" />
+                <v-slider class="controls-item grow" 
+                    hide-details
+                    ticks
+                    label="Sorting Speed"
+                    step="25"
+                    :value="defaultSpeed"
+                    :disabled="isSorting"
+                    :min="configs.MinAnimationInterval"
+                    :max="configs.MaxAnimationInterval"
+                    @change="animationIntervalChange"/>
                 <v-select class="controls-item grow last-item" 
                     hide-details
                     label="Sorting Algorithm" 
@@ -39,10 +48,7 @@
 </template>
 
 <script>
-const MinArraySize = 20;
-const MaxArraySize = 100;
-
-import { AlgorithmTypes } from '../sorting/index';
+import { AlgorithmTypes, Configs } from '../sorting/index';
 
 export default {
     name: 'Controls',
@@ -50,11 +56,11 @@ export default {
         isSorting: Boolean
     },
     data: () => ({
-        arraySize: MinArraySize,
+        configs: Configs,
+        arraySize: Configs.MinArraySize,
+        animationInterval: Configs.DefaultAnimationInterval,
         sortingAlgorithm: AlgorithmTypes.MERGE_SORT,
         array: null,
-        minArraySize: MinArraySize,
-        maxArraySize: MaxArraySize,
         sortingAlgorithms: [
             { name: 'Merge Sort', value: AlgorithmTypes.MERGE_SORT },
             { name: 'Quick Sort', value: AlgorithmTypes.QUICK_SORT },
@@ -68,11 +74,18 @@ export default {
     computed: {
         canSort : function() {
             return !this.isSorting && this.sortingAlgorithm;
+        },
+        defaultSpeed() {
+            return Configs.MinAnimationInterval + Configs.MaxAnimationInterval - Configs.DefaultAnimationInterval;
         }
     },
     methods: {
         generateNewArray: function () {
             this.$emit('newArray', this.arraySize);
+        },
+        animationIntervalChange(val) {
+            this.animationInterval = Configs.MinAnimationInterval + Configs.MaxAnimationInterval - val;
+            this.$emit('animationInterval', this.animationInterval);
         },
         sort: function () {
             this.$emit('sort', this.sortingAlgorithm);

@@ -8,6 +8,15 @@ export const AlgorithmTypes = {
     BUBBLE_SORT: "bubble_sort",
 }
 
+export const Configs = {
+    MinArraySize: 20,
+    MaxArraySize: 100,
+    
+    MinAnimationInterval: 25,
+    MaxAnimationInterval: 500,
+    DefaultAnimationInterval: 100
+}
+
 export { Colors }; 
 
 export const SortingAlgorithms = {
