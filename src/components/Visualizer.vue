@@ -33,6 +33,7 @@ export default {
     watch: {
         numbersArray: function() {
             this.calculateBarsArray();
+            this.baseDelay = 0;
         }
     },
     methods: {
