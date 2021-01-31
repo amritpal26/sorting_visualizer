@@ -5,4 +5,7 @@ export const Colors = {
 
     BAR_MERGE_DIVIDE: '#FFD600',
     BAR_MERGE_JOIN: '#FF7043',
+
+    BAR_BUBBLE_CURRENT: '#FFD600',
+    BAR_BUBBLE_SWAP: '#FF7043',
 }

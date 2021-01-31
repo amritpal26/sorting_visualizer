@@ -57,7 +57,7 @@ export default {
         configs: Configs,
         arraySize: Configs.MinArraySize,
         animationInterval: Configs.DefaultAnimationInterval,
-        sortingAlgorithm: AlgorithmTypes.MERGE_SORT,
+        sortingAlgorithm: Configs.DefaultAlgorithmType,
         array: null,
         sortingAlgorithms: [
             { name: 'Merge Sort', value: AlgorithmTypes.MERGE_SORT },

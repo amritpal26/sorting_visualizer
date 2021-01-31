@@ -42,6 +42,10 @@ export default {
                     this.isSorting = true;
                     SortingAlgorithms.MergeSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
+                case AlgorithmTypes.BUBBLE_SORT:
+                    this.isSorting = true;
+                    SortingAlgorithms.BubbleSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
                 default:
                     break;
             }

@@ -1,4 +1,5 @@
 import mergeSort from './merge_sort';
+import bubbleSort from './bubble_sort';
 import { Colors } from './colors';
 
 export const AlgorithmTypes = {
@@ -14,11 +15,13 @@ export const Configs = {
     
     MinAnimationInterval: 25,
     MaxAnimationInterval: 500,
-    DefaultAnimationInterval: 100
+    DefaultAnimationInterval: 100,
+    DefaultAlgorithmType: AlgorithmTypes.BUBBLE_SORT
 }
 
 export { Colors }; 
 
 export const SortingAlgorithms = {
-    MergeSort: mergeSort
+    MergeSort: mergeSort,
+    BubbleSort: bubbleSort
 }
