@@ -25,7 +25,7 @@ export default function SelectionSort(numbers, onStep) {
         onStep(n-i-1, numbers[n-i-1], Colors.BAR_SELECTION_SWAP, n-i-1 == 0, false);
 
         // swap animation.
-        onStep(n-i-1, numbers[n-i-1], Colors.BAR_SORTED, n-i-1 == 0, true);
         onStep(maxIndex, numbers[maxIndex], Colors.BAR_NORMAL, n-i-1 == 0, false);
+        onStep(n-i-1, numbers[n-i-1], Colors.BAR_SORTED, n-i-1 == 0, true);
     }
 }
