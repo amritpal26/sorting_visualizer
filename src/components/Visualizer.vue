@@ -31,7 +31,7 @@ export default {
     },
     data: () => ({
         barsArray: [],
-        animationCount: 0,
+        animationCount: -1,
         bottomBarColor: Colors.BAR_BASE
     }),
     mounted() {
@@ -40,7 +40,7 @@ export default {
     watch: {
         numbersArray: function() {
             this.calculateBarsArray();
-            this.animationCount = 0;
+            this.animationCount = -1;
         }
     },
     methods: {
@@ -65,8 +65,11 @@ export default {
             }
             return (100/length) - (margin * 2);
         },
-        updateBarStyle: function(index, height, color, isSortingFinished) {
+        updateBarStyle: function(index, height, color, isSortingFinished, shouldDelay) {
             var me = this;
+            if (shouldDelay || me.animationCount == -1) {
+                me.animationCount++;
+            }
             setTimeout(() => {
                 var bar = {
                     ...me.barsArray[index],
@@ -76,9 +79,9 @@ export default {
                 Vue.set(me.barsArray, index, bar);
                 if (isSortingFinished) {
                     this.$emit('animationFinished')
+                    this.animationCount = -1;
                 }
             }, me.animationCount * this.animationInterval);
-            me.animationCount++;
         }
     }
 }
