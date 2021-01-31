@@ -46,6 +46,10 @@ export default {
                     this.isSorting = true;
                     SortingAlgorithms.BubbleSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
+                case AlgorithmTypes.SELECTION_SORT:
+                    this.isSorting = true;
+                    SortingAlgorithms.SelectionSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
                 default:
                     break;
             }

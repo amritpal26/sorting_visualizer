@@ -8,4 +8,7 @@ export const Colors = {
 
     BAR_BUBBLE_CURRENT: '#FFD600',
     BAR_BUBBLE_SWAP: '#FF7043',
+
+    BAR_SELECTION_CURRENT:  '#FFD600',
+    BAR_SELECTION_SWAP: '#FF7043',
 }
