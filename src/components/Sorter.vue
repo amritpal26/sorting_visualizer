@@ -37,18 +37,19 @@ export default {
             this.isSorting = false;
         },
         startSort: function(sortType) {
+            this.isSorting = true;
             switch (sortType) {
                 case AlgorithmTypes.MERGE_SORT:
-                    this.isSorting = true;
                     SortingAlgorithms.MergeSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
                 case AlgorithmTypes.BUBBLE_SORT:
-                    this.isSorting = true;
                     SortingAlgorithms.BubbleSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
                 case AlgorithmTypes.SELECTION_SORT:
-                    this.isSorting = true;
                     SortingAlgorithms.SelectionSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
+                case AlgorithmTypes.INSERTION_SORT:
+                    SortingAlgorithms.InsertionSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
                 default:
                     break;
