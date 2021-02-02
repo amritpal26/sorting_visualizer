@@ -30,15 +30,18 @@ export default {
         }
     },
     data: () => ({
+        maxHeight: -1,
         barsArray: [],
         animationCount: -1,
         bottomBarColor: Colors.BAR_BASE
     }),
     mounted() {
+        this.maxHeight = Math.max(...this.numbersArray);
         this.calculateBarsArray();
     },
     watch: {
-        numbersArray: function() {
+        numbersArray: function(newVal) {
+            this.maxHeight = Math.max(...newVal);
             this.calculateBarsArray();
             this.animationCount = -1;
         }
@@ -50,8 +53,9 @@ export default {
             
             var bars = [];
             this.numbersArray.forEach(barHeight => {
+                var heightPercent = (barHeight / this.maxHeight) * 100;
                 bars.push({
-                    height: `${4*barHeight}px`,
+                    height: `${heightPercent}%`,
                     width: `${barWidth}%`,
                     margin: `0px ${barMarginPercent}%`,
                     backgroundColor: Colors.BAR_NORMAL
@@ -71,9 +75,10 @@ export default {
                 me.animationCount++;
             }
             setTimeout(() => {
+                var heightPercent = (height / this.maxHeight) * 100;
                 var bar = {
                     ...me.barsArray[index],
-                    height: `${4*height}px`,
+                    height: `${heightPercent}%`,
                     backgroundColor: color
                 };
                 Vue.set(me.barsArray, index, bar);
@@ -96,7 +101,8 @@ export default {
 }
 #array-container {
     width: 90%;
-    margin: 0px auto;
+    height: 90%;
+    margin: 0px auto 5px;
 }
 #array-container .array-bar {
     display: inline-block;

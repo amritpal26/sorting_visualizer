@@ -22,7 +22,10 @@ export const AlgorithmTypes = {
 
 export const Configs = {
     MinArraySize: 20,
-    MaxArraySize: 100,
+    MaxArraySize: 200,
+
+    MinArrayElement: 5,
+    MaxArrayElement: 100,
 
     DefaultAnimationInterval: 100,
     DefaultAlgorithmType: AlgorithmTypes.HEAP_SORT,

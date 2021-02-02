@@ -14,9 +14,6 @@
 </template>
 
 <script>
-const MinArrayElement = 20;
-const MaxArrayElement = 100;
-
 import Visualizer from './Visualizer';
 import Controls from './Controls';
 import { AlgorithmTypes, SortingAlgorithms, Configs } from '../sorting/index';
@@ -59,8 +56,8 @@ export default {
             }
         },
         generateNewArray : function (arraySize) {
-            var range = MaxArrayElement - MinArrayElement + 1;
-            this.array = Array(arraySize).fill().map(() => MinArrayElement + Math.round(Math.random() * range));
+            var range = Configs.MaxArrayElement - Configs.MinArrayElement + 1;
+            this.array = Array(arraySize).fill().map(() => Configs.MinArrayElement + Math.round(Math.random() * range));
         },
         onAnimationIntervalChange: function(animationInterval) {
             this.animationInterval = animationInterval;
