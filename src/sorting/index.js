@@ -5,6 +5,12 @@ import insertionSort from './insertion_sort';
 import heapSort from './heap_sort';
 import { Colors } from './colors';
 
+var animationIntervals = [10, 20, 30, 40, 50, 75, 100];
+for (var i = 125; i <=500; i += 25){
+    animationIntervals.push(i);
+}
+animationIntervals.reverse();
+
 export const AlgorithmTypes = {
     MERGE_SORT: "merge_sort",
     BUBBLE_SORT: "bubble_sort",
@@ -14,17 +20,14 @@ export const AlgorithmTypes = {
     QUICK_SORT: "quick_sort",
 }
 
-
 export const Configs = {
     MinArraySize: 20,
     MaxArraySize: 100,
-    
 
     DefaultAnimationInterval: 100,
     DefaultAlgorithmType: AlgorithmTypes.HEAP_SORT,
 
-    MinAnimationInterval: 25,
-    MaxAnimationInterval: 500,
+    AnimationIntervals: animationIntervals
 }
 
 export { Colors }; 

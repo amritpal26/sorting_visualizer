@@ -22,11 +22,10 @@
                     hide-details
                     ticks
                     label="Sorting Speed"
-                    step="25"
                     :value="defaultSpeed"
                     :disabled="isSorting"
-                    :min="configs.MinAnimationInterval"
-                    :max="configs.MaxAnimationInterval"
+                    :min="0"
+                    :max="configs.AnimationIntervals.length-1"
                     @change="animationIntervalChange"/>
                 <v-select class="controls-item grow last-item" 
                     hide-details
@@ -58,7 +57,6 @@ export default {
         arraySize: Configs.MinArraySize,
         animationInterval: Configs.DefaultAnimationInterval,
         sortingAlgorithm: Configs.DefaultAlgorithmType,
-        array: null,
         sortingAlgorithms: [
             { name: 'Merge Sort', value: AlgorithmTypes.MERGE_SORT },
             { name: 'Bubble Sort', value: AlgorithmTypes.BUBBLE_SORT },
@@ -75,16 +73,16 @@ export default {
         canSort : function() {
             return !this.isSorting && this.sortingAlgorithm;
         },
-        defaultSpeed() {
-            return Configs.MinAnimationInterval + Configs.MaxAnimationInterval - Configs.DefaultAnimationInterval;
+        defaultSpeed: function() {
+            return Configs.AnimationIntervals.indexOf(Configs.DefaultAnimationInterval);
         }
     },
     methods: {
         generateNewArray: function () {
             this.$emit('newArray', this.arraySize);
         },
-        animationIntervalChange(val) {
-            this.animationInterval = Configs.MinAnimationInterval + Configs.MaxAnimationInterval - val;
+        animationIntervalChange: function(index) {
+            this.animationInterval = Configs.AnimationIntervals[index];
             this.$emit('animationInterval', this.animationInterval);
         },
         sort: function () {
@@ -95,28 +93,28 @@ export default {
 </script>
 
 <style>
-    .controls-container {
-        text-align: center;
-        padding: 20px 30px;
-    }
-    .controls {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
-    }
-    .controls .controls-item {
-        align-self: center;
-        margin-right: 20px;
-    }
-    .controls .controls-item.grow {
-        flex: 1 1 0;
-    }
-    .controls .controls-item.last-item{
-        margin-right: 0px;
-    }
-    .controls-container .sort-button {
-        width: 80%;
-        align-self: center;
-        margin-right: 20px;
-    }
+.controls-container {
+    text-align: center;
+    padding: 20px 30px;
+}
+.controls {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.controls .controls-item {
+    align-self: center;
+    margin-right: 20px;
+}
+.controls .controls-item.grow {
+    flex: 1 1 0;
+}
+.controls .controls-item.last-item{
+    margin-right: 0px;
+}
+.controls-container .sort-button {
+    width: 80%;
+    align-self: center;
+    margin-right: 20px;
+}
 </style>
