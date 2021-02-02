@@ -51,6 +51,9 @@ export default {
                 case AlgorithmTypes.INSERTION_SORT:
                     SortingAlgorithms.InsertionSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
+                case AlgorithmTypes.HEAP_SORT:
+                    SortingAlgorithms.HeapSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
                 default:
                     break;
             }

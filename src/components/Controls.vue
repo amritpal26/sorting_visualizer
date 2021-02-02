@@ -64,8 +64,8 @@ export default {
             { name: 'Bubble Sort', value: AlgorithmTypes.BUBBLE_SORT },
             { name: 'Selection Sort', value: AlgorithmTypes.SELECTION_SORT },
             { name: 'Insertion Sort', value: AlgorithmTypes.INSERTION_SORT },
-            { name: 'Quick Sort', value: AlgorithmTypes.QUICK_SORT },
             { name: 'Heap Sort', value: AlgorithmTypes.HEAP_SORT },
+            { name: 'Quick Sort', value: AlgorithmTypes.QUICK_SORT },
         ]
     }),
     mounted() {

@@ -14,4 +14,7 @@ export const Colors = {
 
     BAR_INSERTION_CURRENT:  '#FFD600',
     BAR_INSERTION_SWAP: '#FF7043',
+
+    BAR_HEAP_CURRENT:  '#FFD600',
+    BAR_HEAP_SWAP: '#FF7043',
 }

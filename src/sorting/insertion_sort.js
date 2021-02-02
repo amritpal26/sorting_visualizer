@@ -20,4 +20,4 @@ export default function InsertionSort(numbers, onStep) {
             onStep(k, numbers[k], Colors.BAR_SORTED, k == n-1, true);
         }
     }
-} 
+}
