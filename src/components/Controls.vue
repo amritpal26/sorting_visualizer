@@ -50,7 +50,8 @@ import { AlgorithmTypes, Configs } from '../sorting/index';
 export default {
     name: 'Controls',
     props: {
-        isSorting: Boolean
+        isSorting: Boolean,
+        isArraySorted: Boolean
     },
     data: () => ({
         configs: Configs,
@@ -71,7 +72,7 @@ export default {
     },
     computed: {
         canSort : function() {
-            return !this.isSorting && this.sortingAlgorithm;
+            return !this.isSorting && this.sortingAlgorithm && !this.isArraySorted;
         },
         defaultSpeed: function() {
             return Configs.AnimationIntervals.indexOf(Configs.DefaultAnimationInterval);

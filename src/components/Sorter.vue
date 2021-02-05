@@ -7,6 +7,7 @@
             @animationFinished="onFinishSorting" />
         <controls id="controls"
             :isSorting="isSorting"
+            :isArraySorted="isArraySorted"
             @sort="startSort"
             @newArray="generateNewArray"
             @animationInterval="onAnimationIntervalChange" />
@@ -27,11 +28,13 @@ export default {
     data: () => ({
         array: [],
         isSorting: false,
+        isArraySorted: false,
         animationInterval: Configs.DefaultAnimationInterval
     }),
     methods: {
         onFinishSorting: function() {
             this.isSorting = false;
+            this.isArraySorted = true;
         },
         startSort: function(sortType) {
             this.isSorting = true;
@@ -59,6 +62,7 @@ export default {
             }
         },
         generateNewArray : function (arraySize) {
+            this.isArraySorted = false;
             var range = Configs.MaxArrayElement - Configs.MinArrayElement + 1;
             this.array = Array(arraySize).fill().map(() => Configs.MinArrayElement + Math.round(Math.random() * range));
         },
