@@ -3,6 +3,7 @@ import bubbleSort from './bubble_sort';
 import selectionSort from './selection_sort';
 import insertionSort from './insertion_sort';
 import heapSort from './heap_sort';
+import quickSort from './quick_sort';
 import { Colors } from './colors';
 
 var animationIntervals = [10, 20, 30, 40, 50, 75, 100];
@@ -28,7 +29,7 @@ export const Configs = {
     MaxArrayElement: 100,
 
     DefaultAnimationInterval: 100,
-    DefaultAlgorithmType: AlgorithmTypes.HEAP_SORT,
+    DefaultAlgorithmType: AlgorithmTypes.QUICK_SORT,
 
     AnimationIntervals: animationIntervals
 }
@@ -40,5 +41,6 @@ export const SortingAlgorithms = {
     BubbleSort: bubbleSort,
     SelectionSort: selectionSort,
     InsertionSort: insertionSort,
-    HeapSort: heapSort
+    HeapSort: heapSort,
+    QuickSort: quickSort
 }

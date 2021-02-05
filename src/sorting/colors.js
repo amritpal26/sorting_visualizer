@@ -17,4 +17,7 @@ export const Colors = {
 
     BAR_HEAP_CURRENT:  '#FFD600',
     BAR_HEAP_SWAP: '#FF7043',
+
+    BAR_QUICK_SWAP: '#FF7043',
+    BAR_QUICK_PIVOT:  '#FFD600',
 }

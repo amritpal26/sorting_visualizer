@@ -51,6 +51,9 @@ export default {
                 case AlgorithmTypes.HEAP_SORT:
                     SortingAlgorithms.HeapSort(this.array, this.$refs.visualizer.updateBarStyle);
                     break;
+                case AlgorithmTypes.QUICK_SORT:
+                    SortingAlgorithms.QuickSort(this.array, this.$refs.visualizer.updateBarStyle);
+                    break;
                 default:
                     break;
             }
