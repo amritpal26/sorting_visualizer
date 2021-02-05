@@ -29,7 +29,7 @@ export const Configs = {
     MaxArrayElement: 100,
 
     DefaultAnimationInterval: 100,
-    DefaultAlgorithmType: AlgorithmTypes.QUICK_SORT,
+    DefaultAlgorithmType: AlgorithmTypes.MERGE_SORT,
 
     AnimationIntervals: animationIntervals
 }
